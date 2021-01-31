@@ -4,8 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.impute import KNNImputer
-from sklearn.preprocessing import MinMaxScaler
+
 
 train_df = pd.read_csv(r'C:\Users\cinti\Documents\PythonF\DM\Titanic\train.csv')
 test_df = pd.read_csv(r'C:\Users\cinti\Documents\PythonF\DM\Titanic\test.csv')
