@@ -174,37 +174,40 @@ print(total_cabin)
 '''
 
 # Question 16 - Convert Sex to numerical values Male = 0 Female =1
-
 '''
 train_df['Sex'] = train_df['Sex'].map({'female': 1, 'male': 0}).astype(int)
 print(train_df['Sex'])
+print('train_df["Sex"].head()')
+print(train_df['Sex'].head())
 '''
 
 
 ## Question 17  - Complete missing values for Age feature
 '''
 # Used random numbers with mean and std
-mean_age = train_df["Age"].mean()
-std_age = train_df["Age"].std()
-is_null_age = train_df["Age"].isnull().sum()
-print(is_null_age)
+mean_age = train_df['Age'].mean()
+std_age = train_df['Age'].std()
+is_null_age = train_df['Age'].isnull().sum()
+print(f'Number of null values for Age feature before: {is_null_age}')
 random_age = np.random.randint(mean_age - std_age, mean_age + std_age, size = is_null_age)
-age_slice = train_df["Age"].copy()
+age_slice = train_df['Age'].copy()
 age_slice[np.isnan(age_slice)] = random_age
-train_df["Age"] = age_slice
-train_df["Age"] = train_df["Age"].astype(int)
-is_null_age = train_df["Age"].isnull().sum()
-print(is_null_age)
+train_df['Age'] = age_slice
+train_df['Age'] = train_df['Age'].astype(int)
+is_null_age = train_df['Age'].isnull().sum()
+print(f'Number of null values for Age feature : {is_null_age}')
 '''
 
 
 ## Question 18 - Most commom occurrences for Embarked
-
 '''
+is_null_embarked = train_df['Embarked'].isnull().sum()
+print(f'Number of null values for Embarked feature before: {is_null_embarked}')
 most_commom = train_df['Embarked'].mode()
-print(most_commom)
+print(f'Most common value in Embarked: {most_commom}')
 train_df['Embarked'] = train_df['Embarked'].fillna('S')
-print(train_df['Embarked'].isnull().sum())
+is_null_embarked = train_df['Embarked'].isnull().sum()
+print(f'Number of null values for Embarked feature : {is_null_embarked}')
 '''
 
 
@@ -212,8 +215,10 @@ print(train_df['Embarked'].isnull().sum())
 '''
 most_commom2 = test_df['Fare'].mode()
 print(most_commom2)
+print(f'Most common value in Fare: {most_commom2}')
 test_df['Fare'] = test_df['Fare'].fillna(7.75)
-print(test_df['Fare'].isnull().sum())
+is_null_fare = test_df['Fare'].isnull().sum()
+print(f'Number of null values for Fare feature : {is_null_fare}')
 '''
 
 
@@ -223,6 +228,8 @@ train_df.loc[train_df['Fare'] < 7.91, 'Fare'] = 0
 train_df.loc[train_df['Fare'] < 14.454, 'Fare'] = 1
 train_df.loc[train_df['Fare'] < 31, 'Fare'] = 2
 train_df.loc[train_df['Fare'] >= 31, 'Fare'] = 3
+print(train_df['Fare'].head())
 '''
+
 
 #train_df.to_csv('train_new.csv')
